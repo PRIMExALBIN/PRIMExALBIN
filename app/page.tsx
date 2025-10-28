@@ -1,97 +1,32 @@
-'use client';
-
-import Scene from '@/components/Scene';
-import ProjectCard from '@/components/ProjectCard';
-import { useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Home() {
-  useEffect(() => {
-    gsap.utils.toArray<HTMLElement>('.fade-up').forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    });
-  }, []);
-
   return (
-    <>
-      <Scene />
-      
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center text-center fade-up">
-        <div className="z-10 max-w-3xl px-4">
-          <h1 className="text-6xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-text-primary to-accent-gold">
-            PRIMExALBIN
-          </h1>
-          <h2 className="text-2xl md:text-3xl text-accent-blue mt-4 font-bold">
-            Designing Tomorrow
-          </h2>
-          <p className="text-text-secondary mt-6 text-lg max-w-2xl mx-auto">
-            Designing digital experiences that inspire, engage, and leave a lasting impression.
-          </p>
-        </div>
-      </section>
-
-      {/* About */}
-      <section className="section fade-up">
-        <h2 className="text-4xl text-accent-gold text-center mb-12">About</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <ProjectCard
-            title="Philosophy"
-            description="I blend aesthetics with functionality to create interfaces that don’t just work—they resonate."
-          />
-          <ProjectCard
-            title="Future-Forward"
-            description="Exploring the intersection of design, code, and emerging tech to shape what’s next."
-          />
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section className="section fade-up">
-        <h2 className="text-4xl text-accent-teal text-center mb-12">Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ProjectCard
-            title="Neon Grid"
-            description="A responsive dashboard with dynamic 3D data visualization."
-          />
-          <ProjectCard
-            title="Orbit UI"
-            description="A design system inspired by celestial motion—fluid and intuitive."
-          />
-          <ProjectCard
-            title="Voxel Lab"
-            description="Experimental 3D web experiences using voxel art and spatial navigation."
-          />
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 text-center text-text-secondary">
-        <p>
-          Let’s build the future together. Reach out on{' '}
-          <a href="https://twitter.com/PRIMExALBIN" target="_blank" rel="noopener noreferrer">
-            Twitter
-          </a>{' '}
-          or{' '}
-          <a href="mailto:hello@primexalbin.dev">email</a>.
+    <div 
+      className="relative min-h-screen bg-[#0D0D0D] flex items-center justify-center p-4"
+      style={{ backgroundImage: "url('/logo.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      <div className="bg-[rgba(30,30,30,0.4)] backdrop-blur-xl border border-white/5 rounded-3xl p-8 text-center max-w-2xl w-full shadow-2xl">
+        <h1 className="text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-yellow-400 mb-2">
+          Designing
+        </h1>
+        <h2 className="text-4xl font-black text-blue-400 mb-4">Tomorrow</h2>
+        <p className="text-gray-300 mb-8 leading-relaxed">
+          Designing digital experiences that inspire, engage, and leave a lasting impression.
         </p>
-      </footer>
-    </>
+        <div className="flex gap-4 justify-center flex-wrap">
+          <a
+            href="#projects"
+            className="px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition transform hover:scale-105"
+          >
+            View My Projects
+          </a>
+          <a
+            href="mailto:hello@primexalbin.dev"
+            className="px-6 py-3 border-2 border-yellow-400 text-yellow-400 rounded-full font-medium hover:bg-yellow-400 hover:text-black transition transform hover:scale-105"
+          >
+            Get in Touch
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
