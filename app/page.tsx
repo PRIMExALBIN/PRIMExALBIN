@@ -1,16 +1,14 @@
 export default function Home() {
   return (
-    <div 
-      className="relative min-h-screen w-full bg-black flex items-center justify-center p-4"
-      style={{ 
-        backgroundImage: "url('/logo.png')", 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
+    <div className="relative min-h-screen w-full bg-black flex items-center justify-center p-4">
+      {/* Full-Screen Logo Background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/logo.png')" }}
+      ></div>
+
       {/* Glass Hero Card */}
-      <div className="bg-[rgba(30,30,30,0.6)] backdrop-blur-xl border border-white/5 rounded-3xl p-8 text-center max-w-2xl w-full shadow-2xl">
+      <div className="bg-[rgba(30,30,30,0.6)] backdrop-blur-xl border border-white/5 rounded-3xl p-8 text-center max-w-2xl w-full shadow-2xl z-10">
         <h1 className="text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-yellow-400 mb-2">
           Designing
         </h1>
