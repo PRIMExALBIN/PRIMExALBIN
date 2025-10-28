@@ -1,8 +1,8 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, TorusKnot, PointLight } from '@react-three/drei';
-import { useEffect, useRef } from 'react';
+import { OrbitControls, TorusKnot } from '@react-three/drei';
+import { PointLight } from 'three';
 
 export default function Scene() {
   return (
