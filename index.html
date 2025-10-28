@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PRIMExALBIN | Designing Tomorrow</title>
+  <meta name="description" content="Designing digital experiences that inspire, engage, and leave a lasting impression.">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0D0D0D, #1E1E1E);
+      background-image: url('https://www.transparenttextures.com/patterns/noise.png');
+      background-blend-mode: overlay;
+      color: #E0E0E0;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+    }
+
+    section {
+      padding: 100px 5vw;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Hero */
+    #hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 10;
+      max-width: 800px;
+    }
+
+    .hero-content h1 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #E0E0E0, #FFC107);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .hero-content h2 {
+      font-size: 1.8rem;
+      color: #A0A0A0;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #A0A0A0;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: rgba(42, 42, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+    }
+
+    .card h3 {
+      color: #3B82F6;
+      margin-bottom: 12px;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      color: #A0A0A0;
+      line-height: 1.6;
+    }
+
+    /* Footer / Contact */
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: #A0A0A0;
+      font-size: 1rem;
+    }
+
+    a {
+      color: #3B82F6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+      .hero-content h2 {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* Hide scrollbars but keep functionality */
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 3D Canvas -->
+  <div id="3d-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>PRIMExALBIN</h1>
+      <h2>Designing Tomorrow</h2>
+      <p class="tagline">Designing digital experiences that inspire, engage, and leave a lasting impression.</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2 style="text-align: center; margin-bottom: 50px; color: #FFC107;">About</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Philosophy</h3>
+        <p>I blend aesthetics with functionality to create interfaces that don’t just work—they resonate.</p>
+      </div>
+      <div class="card">
+        <h3>Future-Forward</h3>
+        <p>Exploring the intersection of design, code, and emerging tech to shape what’s next.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2 style="text-align: center; margin-bottom: 50px; color: #00BFA6;">Projects</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Neon Grid</h3>
+        <p>A responsive dashboard with dynamic 3D data visualization and real-time interaction.</p>
+      </div>
+      <div class="card">
+        <h3>Orbit UI</h3>
+        <p>A design system inspired by celestial motion—fluid, elegant, and deeply intuitive.</p>
+      </div>
+      <div class="card">
+        <h3>Voxel Lab</h3>
+        <p>Experimental 3D web experiences using voxel art and spatial navigation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <footer>
+    <p>Let’s build the future together. Reach out on <a href="https://twitter.com/PRIMExALBIN" target="_blank">Twitter</a> or <a href="mailto:hello@primexalbin.dev">email</a>.</p>
+  </footer>
+
+  <!-- Three.js via CDN -->
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.160.1/build/three.module.js';
+    import { OrbitControls } from 'https://unpkg.com/three@0.160.1/examples/jsm/controls/OrbitControls.js';
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    document.getElementById('3d-container').appendChild(renderer.domElement);
+
+    // Torus Knot Geometry
+    const geometry = new THREE.TorusKnotGeometry(1, 0.3, 128, 32);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0x00BFA6,
+      emissive: 0x006060,
+      emissiveIntensity: 0.5,
+      metalness: 0.9,
+      roughness: 0.2,
+    });
+    const torus = new THREE.Mesh(geometry, material);
+    scene.add(torus);
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+    scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0x3B82F6, 1, 100);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+    const pointLight2 = new THREE.PointLight(0xFFC107, 0.8, 100);
+    pointLight2.position.set(-5, -5, 5);
+    scene.add(pointLight2);
+
+    // Auto-rotate
+    const animate = () => {
+      requestAnimationFrame(animate);
+      torus.rotation.x += 0.002;
+      torus.rotation.y += 0.005;
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // GSAP Scroll Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Fade-in sections
+    gsap.utils.toArray('section').forEach(section => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    });
+  </script>
+</body>
+</html>
