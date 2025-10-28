@@ -10,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   useEffect(() => {
-    // Fade-in sections on scroll
     gsap.utils.toArray<HTMLElement>('.fade-up').forEach((el) => {
       gsap.fromTo(
         el,
