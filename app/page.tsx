@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div 
-      className="relative min-h-screen bg-black flex items-center justify-center p-4"
+      className="relative min-h-screen w-full bg-black flex items-center justify-center p-4"
       style={{ 
         backgroundImage: "url('/logo.png')", 
         backgroundSize: 'cover', 
