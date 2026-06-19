@@ -215,7 +215,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="home"
-      className="relative min-h-screen flex flex-col justify-center pt-28 pb-20 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center pt-24 sm:pt-28 pb-14 sm:pb-20 overflow-hidden"
     >
       <NameStack />
 

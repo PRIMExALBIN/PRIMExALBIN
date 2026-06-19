@@ -65,8 +65,6 @@ const logos = {
   'GitHub Copilot': raw(githubcopilotSvg),
   ChatGPT: raw(openaiSvg),
   Replit: raw(replitSvg),
-  Bolt: placeholder('M13 2L4 14h6l-1 8 10-12h-6l1-8z'),
-  Lovable: placeholder('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'),
 };
 
 const brandColors = {
@@ -92,8 +90,6 @@ const brandColors = {
   'GitHub Copilot': '#8957E5',
   ChatGPT: '#74AA9C',
   Replit: '#6677FF',
-  Bolt: '#FF6B35',
-  Lovable: '#FF3B5C',
 };
 
 // Grid-based scatter: divide the area into cells, place one tool per cell
@@ -108,7 +104,7 @@ const toolEntries = [
   'React', 'Figma', 'Tailwind', 'TypeScript', 'Node.js', 'Next.js',
   'Vim', 'Git', 'Docker', 'Linux', 'Vite', 'GSAP',
   'Python', 'Postgres', 'Cursor', 'Claude Code', 'Opencode', 'Codex',
-  'Antifgravity', 'GitHub Copilot', 'ChatGPT', 'Replit', 'Bolt', 'Lovable',
+  'Antifgravity', 'GitHub Copilot', 'ChatGPT', 'Replit',
 ].map((name, i) => {
   const cellW = (X_RANGE * 2) / COLS;
   const cellH = (Y_RANGE * 2) / ROWS;
@@ -218,78 +214,104 @@ export default function ToolsCluster() {
       className="relative w-full"
       style={{ perspective: '1800px', perspectiveOrigin: '50% 45%', minHeight: 'clamp(460px, 56vw, 680px)' }}
     >
-      <motion.div
-        style={{ rotateX: rotX, rotateY: rotY, transformStyle: 'preserve-3d' }}
-        className="absolute inset-0"
-      >
-        {[1, 0.72, 0.44].map((s, i) => (
-          <div
-            key={i}
-            aria-hidden
-            className="absolute left-1/2 top-1/2 rounded-full border border-rule"
-            style={{
-              width: `${s * 88}%`,
-              height: `${s * 88}%`,
-              transform: 'translate(-50%, -50%) rotateX(90deg)',
-              opacity: 0.5 - i * 0.12,
-            }}
-          />
-        ))}
-
-        {toolEntries.map((t) => (
-          <span
-            key={t.name}
-            className="absolute left-1/2 top-1/2"
-            style={{ transform: 'translate(-50%, -50%)', transformStyle: 'preserve-3d' }}
-          >
-            <motion.span
-              initial={{ opacity: 0, scale: 0.3 }}
-              whileInView={{ opacity: 1, scale: t.size }}
-              viewport={inView}
-              transition={{ duration: 0.6, ease: EASE, delay: 0.1 + t.delay }}
-              className="inline-flex items-center gap-1.5 whitespace-nowrap"
+      {/* Desktop 3D scene */}
+      <div className="hidden sm:block absolute inset-0">
+        <motion.div
+          style={{ rotateX: rotX, rotateY: rotY, transformStyle: 'preserve-3d' }}
+          className="absolute inset-0"
+        >
+          {[1, 0.72, 0.44].map((s, i) => (
+            <div
+              key={i}
+              aria-hidden
+              className="absolute left-1/2 top-1/2 rounded-full border border-rule"
               style={{
-                fontSize: t.fontSize,
-                x: t.x,
-                y: t.y,
-                z: t.z,
-                rotateX: t.rx,
-                rotateY: t.ry,
-                rotateZ: t.rz,
-                transformStyle: 'preserve-3d',
-                willChange: 'transform, opacity',
+                width: `${s * 88}%`,
+                height: `${s * 88}%`,
+                transform: 'translate(-50%, -50%) rotateX(90deg)',
+                opacity: 0.5 - i * 0.12,
               }}
+            />
+          ))}
+
+          {toolEntries.map((t) => (
+            <span
+              key={t.name}
+              className="absolute left-1/2 top-1/2"
+              style={{ transform: 'translate(-50%, -50%)', transformStyle: 'preserve-3d' }}
             >
-              <span className="w-[1.1em] h-[1.1em] shrink-0" style={{ color: t.color }}>
+              <motion.span
+                initial={{ opacity: 0, scale: 0.3 }}
+                whileInView={{ opacity: 1, scale: t.size }}
+                viewport={inView}
+                transition={{ duration: 0.6, ease: EASE, delay: 0.1 + t.delay }}
+                className="inline-flex items-center gap-1.5 whitespace-nowrap"
+                style={{
+                  fontSize: t.fontSize,
+                  x: t.x,
+                  y: t.y,
+                  z: t.z,
+                  rotateX: t.rx,
+                  rotateY: t.ry,
+                  rotateZ: t.rz,
+                  transformStyle: 'preserve-3d',
+                  willChange: 'transform, opacity',
+                }}
+              >
+                <span className="w-[1.1em] h-[1.1em] shrink-0" style={{ color: t.color }}>
+                  {t.logo}
+                </span>
+                <span className={`font-mono leading-none ${t.tone}`}>
+                  {t.name}
+                </span>
+              </motion.span>
+            </span>
+          ))}
+
+            <span
+              className="absolute left-1/2 top-1/2"
+              style={{ transform: 'translate(-50%, -50%)', transformStyle: 'preserve-3d' }}
+            >
+              <motion.div
+                style={{ z: 80, transformStyle: 'preserve-3d' }}
+                className="flex items-center gap-3"
+              >
+                <span className="block h-1.5 w-1.5 rounded-full bg-accent" />
+                <PixelReveal>
+                  <span
+                    className="block whitespace-nowrap font-mono font-bold leading-none text-ink"
+                    style={{ fontSize: 'clamp(1.6rem, 4vw, 3.2rem)', letterSpacing: '0.02em' }}
+                  >
+                    Tools I Use
+                  </span>
+                </PixelReveal>
+              </motion.div>
+            </span>
+        </motion.div>
+      </div>
+
+      {/* Mobile fallback — horizontal scroll row */}
+      <div className="sm:hidden flex flex-col items-center gap-6 pt-8">
+        <div className="flex items-center gap-2">
+          <span className="block h-1.5 w-1.5 rounded-full bg-accent" />
+          <span className="font-mono font-bold text-ink" style={{ fontSize: 'clamp(1.4rem, 5vw, 1.8rem)' }}>
+            Tools I Use
+          </span>
+        </div>
+        <div className="flex flex-wrap justify-center gap-2 px-4">
+          {toolEntries.map((t) => (
+            <span
+              key={t.name}
+              className="inline-flex items-center gap-1.5 rounded-full border border-rule bg-paper-2/50 px-3 py-1.5 text-xs font-mono text-ink-soft"
+            >
+              <span className="w-[1em] h-[1em] shrink-0" style={{ color: t.color }}>
                 {t.logo}
               </span>
-              <span className={`font-mono leading-none ${t.tone}`}>
-                {t.name}
-              </span>
-            </motion.span>
-          </span>
-        ))}
-
-          <span
-            className="absolute left-1/2 top-1/2"
-            style={{ transform: 'translate(-50%, -50%)', transformStyle: 'preserve-3d' }}
-          >
-            <motion.div
-              style={{ z: 80, transformStyle: 'preserve-3d' }}
-              className="flex items-center gap-3"
-            >
-              <span className="block h-1.5 w-1.5 rounded-full bg-accent" />
-              <PixelReveal>
-                <span
-                  className="block whitespace-nowrap font-mono font-bold leading-none text-ink"
-                  style={{ fontSize: 'clamp(1.6rem, 4vw, 3.2rem)', letterSpacing: '0.02em' }}
-                >
-                  Tools I Use
-                </span>
-              </PixelReveal>
-            </motion.div>
-          </span>
-      </motion.div>
+              {t.name}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

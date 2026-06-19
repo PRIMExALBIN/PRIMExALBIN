@@ -23,7 +23,7 @@ export default function About() {
           <SectionLabel index="01">About</SectionLabel>
         </motion.div>
 
-        <div className="mt-12 grid gap-12 md:grid-cols-12 md:gap-8">
+        <div className="mt-12 grid gap-8 sm:gap-12 md:grid-cols-12 md:gap-8">
           <motion.h2
             variants={fadeUp}
             initial="hidden"
@@ -89,7 +89,7 @@ export default function About() {
               initial="hidden"
               whileInView="show"
               viewport={inView}
-              className="relative mt-6 font-mono text-xs uppercase tracking-[0.22em]"
+              className="relative mt-6 font-mono text-[10px] sm:text-xs uppercase sm:tracking-[0.22em]"
               onMouseEnter={() => setProofVisible(true)}
               onMouseLeave={() => setProofVisible(false)}
             >
@@ -159,7 +159,7 @@ export default function About() {
           initial="hidden"
           whileInView="show"
           viewport={inView}
-          className="mt-16 flex items-center justify-center gap-10 sm:gap-16"
+          className="mt-16 flex flex-wrap items-center justify-center gap-6 sm:gap-16"
         >
           {[
             ['1+', 'Years tinkering'],
