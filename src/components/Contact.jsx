@@ -1,42 +1,109 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 import { Github, Instagram, Mail } from 'lucide-react';
+import { fadeUp, inView } from '../lib/motion';
+
+const socials = [
+  { label: 'GitHub', href: 'https://github.com/PRIMExALBIN', icon: Github },
+  { label: 'Instagram', href: 'https://www.instagram.com/pr1mexalb1n/', icon: Instagram },
+  { label: 'Email', href: 'mailto:ebyalbin1@gmail.com', icon: Mail },
+];
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative bg-zinc-950 py-20">
-      {/* Top fade to blend from previous section */}
-      <div className="pointer-events-none absolute -top-16 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-zinc-950/70" />
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-accent text-paper"
+    >
+      {/* Decorative oversized glyph */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -left-8 -bottom-16 select-none font-serif leading-none text-paper/10"
+        style={{ fontSize: 'clamp(18rem, 38vw, 40rem)' }}
+      >
+        ✦
+      </span>
 
-      <div className="mx-auto max-w-5xl px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">Get in touch</h2>
-        <p className="mt-3 text-zinc-400">Let’s connect — I’m always open to collaborate or chat.</p>
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8 py-24 sm:py-32">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={inView}
+          className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.22em] text-paper/70"
+        >
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-paper" />
+          <span>03</span>
+          <span aria-hidden className="h-px w-10 bg-paper/30" />
+          <span>Contact</span>
+        </motion.div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="https://github.com/PRIMExALBIN"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-cyan-50/95 transition border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 hover:border-white/30 [box-shadow:inset_0_1px_0_rgba(255,255,255,0.35),0_10px_30px_-10px_rgba(56,189,248,0.45)]"
+        <motion.h2
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={inView}
+          className="mt-10 font-serif font-light leading-[1] tracking-tightest text-paper text-balance"
+          style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)' }}
+        >
+          Let's make something <span className="italic">good.</span>
+        </motion.h2>
+
+        <div className="mt-12 grid gap-10 md:grid-cols-12">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={inView}
+            className="md:col-span-7"
           >
-            <Github className="h-4 w-4" />
-            GitHub
-          </a>
-          <a
-            href="https://www.instagram.com/pr1mexalb1n/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-zinc-100 transition border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 hover:border-white/30 [box-shadow:inset_0_1px_0_rgba(255,255,255,0.32),0_10px_30px_-10px_rgba(147,51,234,0.40)]"
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/70">
+              Write to me
+            </p>
+            <a
+              href="mailto:ebyalbin1@gmail.com"
+              className="group mt-3 inline-flex items-baseline gap-3 font-serif text-2xl sm:text-3xl tracking-tight text-paper"
+            >
+              <span className="link-underline-paper">ebyalbin1@gmail.com</span>
+              <span className="transition-transform duration-500 ease-editorial group-hover:translate-x-1">
+                ↗
+              </span>
+            </a>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={inView}
+            className="md:col-span-5"
           >
-            <Instagram className="h-4 w-4" />
-            Instagram
-          </a>
-          <a
-            href="mailto:ebyalbin1@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-zinc-100 transition border border-white/20 bg-white/10 backdrop-blur-md hover:bg-white/15 hover:border-white/30 [box-shadow:inset_0_1px_0_rgba(255,255,255,0.30),0_10px_30px_-10px_rgba(99,102,241,0.35)]"
-          >
-            <Mail className="h-4 w-4" />
-            Email
-          </a>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/70">
+              Elsewhere
+            </p>
+            <ul className="mt-3 divide-y divide-paper/20 border-t border-paper/20">
+              {socials.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <li key={s.label}>
+                    <a
+                      href={s.href}
+                      target={s.href.startsWith('http') ? '_blank' : undefined}
+                      rel="noreferrer"
+                      className="group flex items-center justify-between py-3.5 text-paper transition-opacity hover:opacity-70"
+                    >
+                      <span className="flex items-center gap-3 text-base">
+                        <Icon className="h-5 w-5 stroke-[1.5]" />
+                        {s.label}
+                      </span>
+                      <span className="font-mono text-xs text-paper/70 transition-transform duration-500 ease-editorial group-hover:translate-x-1">
+                        ↗
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
         </div>
       </div>
     </section>
