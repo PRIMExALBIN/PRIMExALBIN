@@ -1,8 +1,20 @@
 {
   "rewrites": [
     {
-      "source": "/(.*\\.(xml|txt|json|js|css|png|jpg|jpeg|gif|svg|webp|ico|woff2?|eot|ttf|otf|avif))",
-      "destination": "/$1"
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/og-image.png",
+      "destination": "/og-image.png"
+    },
+    {
+      "source": "/hero-character.png",
+      "destination": "/hero-character.png"
     },
     {
       "source": "/(.*)",
