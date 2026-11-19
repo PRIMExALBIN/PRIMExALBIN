@@ -9,9 +9,9 @@ const charPath = join(root, 'public', 'hero-character.png');
 const outDir = join(root, 'public');
 
 // Crop face area from the 1440x1440 hero character
-// Take top-center portion (face/head)
+// Face is centered, spanning roughly x=250–1100, y=150–950
 const crop = await sharp(charPath)
-  .extract({ left: 360, top: 80, width: 720, height: 720 })
+  .extract({ left: 220, top: 120, width: 1000, height: 1000 })
   .png()
   .toBuffer();
 
